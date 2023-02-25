@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { app, db, firebaseConfig } from "../firebase/firebase";
-import { collection, getDocs, setDoc, doc, getDoc, query, getFirestore } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import { app, db } from "../firebase/firebase";
 import { useUser } from "../firebase/AuthContextProvider";
 import { playTrack, pauseTrack, toggleMute, previousTrack, nextTrack, handleTimeChange } from "./AudioControl";
-import { initializeApp } from "firebase/app";
 
 const Tracks = () => {
 
@@ -43,7 +42,7 @@ const Tracks = () => {
     const getTracks = async () => {
       try {
         console.log(db)
-        const data = await getDocs(collection(getFirestore(initializeApp(firebaseConfig)), "tracks"));
+        const data = await getDocs(collection(getFirestore(app), "tracks"));
 
         console.log(data)
 
