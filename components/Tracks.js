@@ -39,11 +39,7 @@ const Tracks = () => {
   useEffect(() => {
     const getTracks = async () => {
       try {
-        console.log(db)
         const data = await getDocs(collection(getFirestore(app), "tracks"));
-
-        console.log(data)
-
         const newTracks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
         setTracks(newTracks)
@@ -54,7 +50,6 @@ const Tracks = () => {
     getTracks();
   }, []);
 
-  console.log(tracks)
 
   useEffect(() => {
     if (currentTrack && isPlaying) {
