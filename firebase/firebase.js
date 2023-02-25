@@ -38,4 +38,4 @@ const logOut = () => {
       });
 }
 
-export { app, auth, db, signIn, logOut }
+export { firebaseConfig, app, auth, db, signIn, logOut }
