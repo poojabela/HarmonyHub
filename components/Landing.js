@@ -4,7 +4,7 @@ const Landing = () => {
     return ( 
         <>
             <div className="video-container fixed top-0 left-0 w-full h-full overflow-hidden z-[-1]">
-                <video src="vinyl.mp4" autoPlay loop playsInline className="fixed h-[100vh] w-[100vw] top-0 object-cover left-0"></video>
+                <video src="vinyl.mp4" autoPlay={true} loop={true} playsInline={true} muted="muted" className="fixed h-[100vh] w-[100vw] top-0 object-cover left-0"></video>
             </div>
             <div className="h-[100vh] flex flex-col justify-center items-center gap-4 text-center">
             <h1 className="text-5xl font-semibold bg-[linear-gradient(-33deg,_#00008B_5%,_#ADD8E6)] bg-clip-text text-transparent">HarmonyHub</h1>

@@ -19,8 +19,6 @@ const Tracks = () => {
   const handleToggleMute = () => toggleMute(audioRef, isMuted, setIsMuted);
   const handlePreviousTrack = () => previousTrack(currentTrackIndex, setCurrentTrackIndex, tracks);
   const handleNextTrack = () => nextTrack(currentTrackIndex, setCurrentTrackIndex, tracks);
-  const handleTimeSliderChange = (event) => handleTimeChange(event, setCurrentTrackIndex, audioRef);
-
 
   const handleFav = async (track) => {
     try {
@@ -76,8 +74,7 @@ const Tracks = () => {
         src={currentTrack?.url}
       />
 
-      <div className="cotrols flex flex-col gap-8 sm:flex-row">
-        <div className="buttons flex gap-8">
+      <div className="cotrols flex gap-8">
           <button onClick={ handlePreviousTrack }>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-skip-back stroke-green-500 hover:stroke-green-700"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>        
           </button>
@@ -93,16 +90,7 @@ const Tracks = () => {
           <button onClick={() => handleFav(currentTrack)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-heart stroke-green-500 hover:stroke-green-700"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
           </button>
-        </div>
-        <div className="text-center">
-          <input
-            type="range"
-            min="0"
-            max={audioRef.current && audioRef.current.duration}
-            onChange={ handleTimeSliderChange }
-          />
-        </div>
-    </div>
+      </div>
       </div>
   );
 };

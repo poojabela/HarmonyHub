@@ -26,9 +26,3 @@ export const nextTrack = (currentTrackIndex, setCurrentTrackIndex, tracks) => {
     setCurrentTrackIndex(newIndex);
   }
 };
-
-export const handleTimeChange = (event, setCurrentTime, audioRef) => {
-  const time = parseFloat(event.target.value);
-  setCurrentTime(time);
-  audioRef.current.currentTime = time;
-};
