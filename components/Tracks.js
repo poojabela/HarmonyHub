@@ -39,9 +39,10 @@ const Tracks = () => {
   }
 
   useEffect(() => {
+    const collectionRef = collection(db, "tracks");
     const getTracks = async () => {
       try {
-        const data = await getDocs(collection(db, "tracks"));
+        const data = await getDocs(collectionRef);
         setTracks(
           data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
