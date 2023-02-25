@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { db } from "../firebase/firebase";
-import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, getDoc, query } from "firebase/firestore";
 import { useUser } from "../firebase/AuthContextProvider";
 import { playTrack, pauseTrack, toggleMute, previousTrack, nextTrack, handleTimeChange } from "./AudioControl";
 
@@ -41,14 +41,14 @@ const Tracks = () => {
   useEffect(() => {
     const getTracks = async () => {
       try {
-        const data = await getDocs(doc(db, "tracks"));
-        
-        data.forEach((doc) => {
-          setTracks((prevTracks) => ([...prevTracks, {
-            id: doc.id,
-            ...(doc.data())
-          }]))
-        })
+        console.log(db)
+        const data = await getDocs(query(collection(db, "tracks")));
+
+        console.log(data)
+
+        const newTracks = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+
+        setTracks(newTracks)
       } catch (error) {
         console.log(error);
       }
