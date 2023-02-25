@@ -24,7 +24,7 @@ const Tracks = () => {
 
   const handleFav = async (track) => {
     try {
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, `users/${user.uid}`);
 
       const userDocSnapshot = await getDoc(userDocRef);
       const currentFavSongs = userDocSnapshot.data().favSongs || [];
@@ -41,11 +41,14 @@ const Tracks = () => {
   useEffect(() => {
     const getTracks = async () => {
       try {
-        const collectionRef = collection(db, "tracks");
-        const data = await getDocs(collectionRef);
-        setTracks(
-          data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
+        const data = await getDocs(doc(db, "tracks"));
+        
+        data.forEach((doc) => {
+          setTracks((prevTracks) => ([...prevTracks, {
+            id: doc.id,
+            ...(doc.data())
+          }]))
+        })
       } catch (error) {
         console.log(error);
       }
