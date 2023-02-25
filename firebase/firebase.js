@@ -13,12 +13,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
-export const auth = getAuth(app)
+const db = getFirestore(app)
+const auth = getAuth(app)
 
 const provider = new GoogleAuthProvider();
 
-export const signIn = () => {
+const signIn = () => {
     signInWithPopup(auth, provider)
     .then((result) => {
         const user = result.user;
@@ -30,10 +30,12 @@ export const signIn = () => {
     });
 }
 
-export const logOut = () => {
+const logOut = () => {
     signOut(auth).then(() => {
         Router.push('/')
       }).catch((error) => {
         console.log(error)
       });
 }
+
+export { app, auth, db, signIn, logOut }
