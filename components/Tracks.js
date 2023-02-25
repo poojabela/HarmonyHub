@@ -39,10 +39,9 @@ const Tracks = () => {
   }
 
   useEffect(() => {
-    // const collectionRef = collection(db, "/tracks");
-    const collectionRef = doc(db, "/tracks"); // try 2
     const getTracks = async () => {
       try {
+        const collectionRef = collection(db, "tracks");
         const data = await getDocs(collectionRef);
         setTracks(
           data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -54,13 +53,15 @@ const Tracks = () => {
     getTracks();
   }, []);
 
+  console.log(tracks)
+
   useEffect(() => {
-    if (isPlaying) {
+    if (currentTrack && isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [currentTrackIndex, isPlaying]);
+  }, [currentTrack, isPlaying]);
 
 
   return (
