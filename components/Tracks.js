@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import { app, db } from "../firebase/firebase";
 import { useUser } from "../firebase/AuthContextProvider";
 import { playTrack, pauseTrack, toggleMute, previousTrack, nextTrack, handleTimeChange } from "./AudioControl";
