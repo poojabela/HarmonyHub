@@ -10,16 +10,16 @@ const MainContainer = () => {
     const Router = useRouter()
 
     useEffect(() => {
-        if(user === null) {
+        if (user === null) {
             Router.push('/')
         }
-    }, [])
+    }, [user])
 
 
     return ( 
         <div className="">
             <div className="video-container fixed top-0 left-0 w-full h-full overflow-hidden z-[-1]">
-                <video src="audio.mp4" autoPlay={true} loop={true} playsInline={true}  className="fixed h-[100vh] w-[100vw] top-0 object-cover left-0" ></video>
+                <video src="audio.mp4" autoPlay={true} loop={true} playsInline={true} muted="muted" className="fixed h-[100vh] w-[100vw] top-0 object-cover left-0" ></video>
             </div>
             <FavSong />
             <Tracks />
