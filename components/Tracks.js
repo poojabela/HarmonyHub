@@ -61,7 +61,7 @@ const Tracks = () => {
 
 
   return (
-    <div className="h-[80vh] flex flex-col justify-end items-center">
+    <div className="h-[70vh] flex flex-col justify-end items-center py-2">
       <h1 className="mb-5 text-4xl bg-[linear-gradient(-33deg,_#00008B_5%,_#ADD8E6)] bg-clip-text text-transparent">{currentTrack?.name}</h1>
 
       <audio
