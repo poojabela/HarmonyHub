@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { collection, getDocs, setDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import { app, db } from "../firebase/firebase";
 import { useUser } from "../firebase/AuthContextProvider";
-import { playTrack, pauseTrack, toggleMute, previousTrack, nextTrack, handleTimeChange } from "./AudioControl";
+import { playTrack, pauseTrack, toggleMute, previousTrack, nextTrack } from "./AudioControl";
 
 const Tracks = () => {
 
@@ -22,14 +22,14 @@ const Tracks = () => {
 
   const handleFav = async (track) => {
     try {
-      const userDocRef = doc(db, `users/${user.uid}`);
+      const userDocRef = doc(getFirestore(app), `users/${user.uid}`);
 
       const userDocSnapshot = await getDoc(userDocRef);
       const currentFavSongs = userDocSnapshot.data().favSongs || [];
 
       if(!currentFavSongs.find((song) => song.id === currentTrack.id)) {
         const updatedFavSongs = [...currentFavSongs, track];
-        await setDoc(userDocRef, { favSongs: updatedFavSongs });
+        await setDoc( userDocRef, { favSongs: updatedFavSongs });
       }
     } catch (error) {
       console.log(error)

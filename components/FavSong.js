@@ -1,6 +1,6 @@
-import { getDoc, doc, setDoc } from "firebase/firestore";
+import { getDoc, doc, setDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState, useRef } from "react";
-import { db } from "../firebase/firebase"
+import { db, app } from "../firebase/firebase"
 import { useUser } from "../firebase/AuthContextProvider";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from 'react-tooltip'
@@ -46,8 +46,8 @@ const FavSong = () => {
 
     const handleDeleteFav = async (id) => {
         try {
-          const userDocRef = doc(db, "users", user.uid);
-          const userDocSnapshot = await getDoc(userDocRef);
+          const userDocRef = doc(getFirestore(app), "users", user.uid);
+          const userDocSnapshot = await getDoc( userDocRef);
           const currentFavSongs = userDocSnapshot.data().favSongs || [];
       
           const updatedFavSongs = currentFavSongs.filter(fav => fav.id !== id);
